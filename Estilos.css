@@ -1,0 +1,28 @@
+body { background-color: rgb(180, 180, 180); font-family: Arial, sans-serif; margin: 0; }
+header, .header { background-color: #1a1a1a; color: rgb(1, 99, 71); padding: 20px; text-align: center; font-family: 'Courier New', Courier, monospace; border-bottom: 5px solid #00aa00; }
+h1 { margin: 0; font-size: 250%; text-transform: uppercase; letter-spacing: 2px;}
+.subtitle { color: #aaa; font-size: 18px; margin-top: 10px; font-style: italic; }
+
+main, .container { background-color: rgb(240, 240, 240); width: 85%; margin: 30px auto; padding: 40px; border: 1px solid gray; box-shadow: 10px 10px 5px rgba(0,0,0,0.2); overflow: hidden; }
+
+h2, h3 { color: #005500; border-bottom: 2px solid #00aa00; display: inline-block; margin-top: 20px;}
+p, li { font-family: Courier; color: black; font-size: 15px; text-align: justify; line-height: 1.6; }
+
+img { border: 2px solid #333; padding: 2px; background-color: white; }
+.img-left { float: left; margin-right: 25px; margin-bottom: 15px; border-radius: 10px; }
+.img-right { float: right; margin-left: 25px; margin-bottom: 15px; border-radius: 10px; }
+
+.cita { background-color: #e6f7e6; border-left: 5px solid #00aa00; padding: 15px; margin: 30px 0; font-style: italic; text-align: center; font-size: 18px; font-weight: bold; color: #333;}
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; font-family: Courier; background-color: white;}
+th, td { border: 1px solid #00aa00; padding: 12px; text-align: left; }
+th { background-color: #00aa00; color: white; font-size: 16px;}
+
+.nav-links { margin-top: 40px; text-align: center; clear: both; }
+.nav-links a { background-color: #00aa00; color: white; padding: 10px 20px; text-decoration: none; margin: 0 10px; font-weight: bold; font-family: Arial; border-radius: 5px; transition: background 0.3s;}
+.nav-links a:hover { background-color: #007700; }
+
+footer, .footer { text-align: center; background-color: #1a1a1a; color: white; padding: 20px; border-top: 5px solid #00aa00; margin-top: 40px; clear: both; }
+footer h3, .footer h3 { margin-top: 0; color: rgb(1, 99, 71); font-family: Courier; border: none; }
+footer p, .footer p { font-size: 16px; line-height: 1.6; text-align: center; margin: 5px 0;}
+.footer-info { font-size: 12px; margin-top: 15px; color: #aaa; text-align: center; }
