@@ -25,4 +25,3 @@ th { background-color: #00aa00; color: white; font-size: 16px;}
 footer, .footer { text-align: center; background-color: #1a1a1a; color: white; padding: 20px; border-top: 5px solid #00aa00; margin-top: 40px; clear: both; }
 footer h3, .footer h3 { margin-top: 0; color: rgb(1, 99, 71); font-family: Courier; border: none; }
 footer p, .footer p { font-size: 16px; line-height: 1.6; text-align: center; margin: 5px 0;}
-.footer-info { font-size: 12px; margin-top: 15px; color: #aaa; text-align: center; }
