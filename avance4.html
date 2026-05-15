@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Galería</title>
+    <link rel="stylesheet" href="Estilos.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">LINUX ●</a>
+    <a href="index.html">Inicio</a>
+    <a href="biografia.html">Biografía</a>
+    <a href="aportes.html">Aportes</a>
+    <a href="avance4.html" class="activo">Galería</a>
+  </nav>
+
+    <div class="header">
+        <h1>Galeria</h1>
+        <div class="subtitle">Galería de Trabajos &amp; Formulario de Registro</div>
+    </div>
+
+    <div class="container">
+
+        <!-- ==================== GALERÍA ==================== -->
+        <div class="section-title">Galería</div>
+        <p class="section-desc">Trabajos realizados durante toda la capacitación — Semestres 1 al 4</p>
+
+        <!-- Botones de filtro -->
+        <div class="filtros">
+            <button class="activo" onclick="filtrar('todos', this)">Todos</button>
+            <button onclick="filtrar('1', this)">Semestre 1</button>
+            <button onclick="filtrar('2', this)">Semestre 2</button>
+            <button onclick="filtrar('3', this)">Semestre 3</button>
+            <button onclick="filtrar('4', this)">Semestre 4</button>
+        </div>
+
+        <!-- Contador -->
+        <p class="contador">Mostrando <span id="contNum">10</span> de 10 imágenes</p>
+
+        <!-- Grid de tarjetas -->
+        <div class="gallery-grid" id="gridGaleria"></div>
+
+        <!-- ==================== FORMULARIO ==================== -->
+        <div class="section-title">Formulario</div>
+        <p class="section-desc">Completar el formulario.</p>
+
+        <div class="form-section">
+            <h2>&gt;_ Formulario</h2>
+            <p class="form-hint">Formulario integrado desde Google Forms</p>
+
+            <!--
+                INSTRUCCIONES:
+                1. Abre tu formulario en Google Forms
+                2. Clic en Enviar → pestaña < >
+                3. Cambia el atributo src="" con tu enlace
+            -->
+            <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdInHXUiR_pRwFjvDwuVrBn5axsiI5sDIZzHGy_Iof_7inpHw/viewform?embedded=true"
+                width="100%"
+                height="650"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                style="border: 2px solid #00aa00; border-radius: 6px; display: block;">
+                Cargando formulario...
+            </iframe>
+        </div>
+
+        <!-- Navegación inferior -->
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="biografia.html">Historia y Estudios</a>
+            <a href="aportes.html">Aportes a la Computación</a>
+        </div>
+
+        <div class="footer">
+            <h3>Integrantes del Equipo:</h3>
+            <p>Trevizo Hernandez Jesus Manuel</p>
+            <p>Alberto Cruz Ordoñez</p>
+            <p class="footer-info">Grupo: 616 | Materia: Diseño Web</p>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button class="lb-close" onclick="cerrarLightbox()">✕</button>
+        <button class="lb-nav prev" onclick="navegarLightbox(-1)">&#8249;</button>
+        <img id="lbImg" src="" alt="">
+        <div class="lb-titulo" id="lbTitulo"></div>
+        <div class="lb-desc" id="lbDesc"></div>
+        <button class="lb-nav next" onclick="navegarLightbox(1)">&#8250;</button>
+        <div class="lb-counter"><span id="lbNum">1</span> / <span id="lbTotal">10</span></div>
+    </div>
+
+    <script>
+        // ============================================================
+        // DATOS DE LA GALERÍA
+        // Cada imagen tiene: src, semestre, titulo, descripcion
+        // ============================================================
+        const imagenes = [
+            {
+                src: "Imagenes/Semestre_1.png",
+                semestre: "1",
+                titulo: "Practica 6 - Dia de Muertos ",
+                descripcion: "Para poder aprender a crear aplicaciones se nos puso este trabajo en el cual con la tematica del dia de muertos describiamos su historia y origenes utilizando la pagina app inventor para poder hacer una tipo aplicacion descriptiva"
+            },
+            {
+                src: "Imagenes/Semestre _1.5.png",
+                semestre: "1",
+                titulo: "Proyecto Final - App Inventor",
+                descripcion: "Como proyecto final se nos pidio realizar una aplicacion funcional en app invertor siendo este mi caso una aplicaion que aunque es sencilla tenia funciones como calcular area de un cuadrado o rectangulo, sumar, restar, multiplicar, dividir y hasta sacar la hipotenusa de un triangulo"
+            },
+            {
+                src: "Imagenes/Semestre_2.PNG",
+                semestre: "2",
+                titulo: "Sistema Linux en ejecución",
+                descripcion: "Utilizando una virtualBox logramos emular un sistema operativo de linux mediante una usb para observar su fincionamiento al igual que lo hicimos con un sistema de microsoft como windows 7"
+            },
+            {
+                src: "Imagenes/Semestre_2.5.png",
+                semestre: "2",
+                titulo: "Practica Packet Tracer",
+                descripcion: "Utilizando Cisco Packet Tracer logramos realizar distintas practicas sobre el como funciona una red y el como se debe conectar, instalar y configurar un enrutador mediante distintas practicas"
+            },
+            {
+                src: "Imagenes/Semestre_3.png",
+                semestre: "3",
+                titulo: "Diagrama de Flujo",
+                descripcion: "Utilizando la aplicacion de Pseint pudimos realizar distintos diagramas de flujo funcionales como el que se muestra en la imagen el cual realiza un sorteo en el cual si dependiento si tu numero es par o impar ganas o pierdes"
+            },
+            {
+                src: "Imagenes/Semestre_3.5.png",
+                semestre: "3",
+                titulo: "Codigo C++",
+                descripcion: "Al utilizar un editor de codigo pudimos escribir diferentes codigos que realizaban distintas funciones siendo el de la imagen un codigo el cual simula una caja registradora en la cual al ingresar tus articulos y la cantidad te menciona la cantidad que tienes que pagar incluyendote IVA"
+            },
+            {
+                src: "Imagenes/Semestre_4.1.PNG",
+                semestre: "4",
+                titulo: "Pagina Web",
+                descripcion: "En la imagen se muestra la pagina web que realizamos como trabajo durante todo el 4 semestre siendo este mismo el cual utilizando lenguaje html y css para los estilos logramos crear una web bigrafica sobre Linus Torvalds y sus aportes en la tecnologia actual"
+            },
+            {
+                src: "Imagenes/Semestre_4.2.jpg",
+                semestre: "4",
+                titulo: "Portada Revista",
+                descripcion: "Este fuel el proyecto 1 del 4 semestre el cual mediante photoshop tratamos de simular la portada de una revista con el tema de mi trabajo a futuro utilizando estilos de letras y foto mostajes para el poder simularla"
+            },
+            {
+                src: "Imagenes/Semestre_4.3.jpg",
+                semestre: "4",
+                titulo: "Fotomontaje San valentin",
+                descripcion: "Medinate photoshop realizamos un Fotomontaje con el tema de san valentin con el propocido de aprender a utilizar las distintas herramientas que nos ofrece esta como las capas"
+            },
+            {
+                src: "Imagenes/Semestre_4.4.jpg",
+                semestre: "4",
+                titulo: "Collage",
+                descripcion: "Cuando empezamos a utilizar photoshop se nos pidio realizar distintos Fotomontaje en lugares en los cuales quisieramos estar utilizando las distintas herramientas que nos da"
+            },
+        ];
+
+        // ============================================================
+        // GENERAR TARJETAS
+        // ============================================================
+        const grid = document.getElementById('gridGaleria');
+
+        imagenes.forEach((img) => {
+            const card = document.createElement('div');
+            card.className = 'gallery-card';
+            card.dataset.sem = img.semestre;
+            card.innerHTML = `
+                <img class="card-img" src="${img.src}" alt="${img.titulo}">
+                <div class="card-body">
+                    <span class="card-semestre">Semestre ${img.semestre}</span>
+                    <p class="card-titulo">${img.titulo}</p>
+                    <p class="card-desc">${img.descripcion}</p>
+                    <span class="card-ver">🔍 Ver imagen completa →</span>
+                </div>
+            `;
+            card.onclick = () => abrirLightbox(img.src, img.titulo, img.descripcion);
+            grid.appendChild(card);
+        });
+
+        // ============================================================
+        // FILTRO POR SEMESTRE
+        // ============================================================
+        function filtrar(sem, boton) {
+            // Actualizar botón activo
+            document.querySelectorAll('.filtros button').forEach(b => b.classList.remove('activo'));
+            boton.classList.add('activo');
+
+            // Mostrar/ocultar tarjetas con animación
+            const cards = document.querySelectorAll('.gallery-card');
+            let visibles = 0;
+
+            cards.forEach(card => {
+                const coincide = sem === 'todos' || card.dataset.sem === sem;
+                if (coincide) {
+                    card.classList.remove('oculta');
+                    visibles++;
+                } else {
+                    card.classList.add('oculta');
+                }
+            });
+
+            // Actualizar contador
+            document.getElementById('contNum').textContent = visibles;
+        }
+
+        // ============================================================
+        // LIGHTBOX CON NAVEGACIÓN
+        // ============================================================
+        let lbIndice = 0;         // índice actual en el lightbox
+        let lbListaActiva = [];   // sólo las imágenes visibles según el filtro
+
+        function abrirLightbox(src, titulo, desc) {
+            // Construir lista de imágenes actualmente visibles
+            lbListaActiva = imagenes.filter((_, i) => {
+                const cards = document.querySelectorAll('.gallery-card');
+                return !cards[i].classList.contains('oculta');
+            });
+            // Encontrar el índice de la imagen clicada
+            lbIndice = lbListaActiva.findIndex(img => img.src === src && img.titulo === titulo);
+            mostrarEnLightbox(lbIndice);
+            document.getElementById('lightbox').classList.add('open');
+        }
+
+        function mostrarEnLightbox(i) {
+            const img = lbListaActiva[i];
+            const el = document.getElementById('lbImg');
+
+            // Fade rápido al cambiar imagen
+            el.style.opacity = '0';
+            setTimeout(() => {
+                el.src = img.src;
+                el.alt = img.titulo;
+                el.style.opacity = '1';
+            }, 150);
+
+            document.getElementById('lbTitulo').textContent = img.titulo;
+            document.getElementById('lbDesc').textContent   = img.descripcion;
+            document.getElementById('lbNum').textContent    = i + 1;
+            document.getElementById('lbTotal').textContent  = lbListaActiva.length;
+        }
+
+        function navegarLightbox(dir) {
+            lbIndice = (lbIndice + dir + lbListaActiva.length) % lbListaActiva.length;
+            mostrarEnLightbox(lbIndice);
+        }
+
+        function cerrarLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+
+        // Fade CSS transition en la imagen
+        document.getElementById('lbImg').style.transition = 'opacity 0.15s ease';
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) cerrarLightbox();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('lightbox').classList.contains('open')) return;
+            if (e.key === 'Escape')      cerrarLightbox();
+            if (e.key === 'ArrowRight')  navegarLightbox(1);
+            if (e.key === 'ArrowLeft')   navegarLightbox(-1);
+        });
+    </script>
+
+</body>
+</html>
